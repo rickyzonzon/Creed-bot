@@ -10,7 +10,7 @@ from bot_trainer.model import NeuralNet
 
 # add sentiment training
 
-with open('data/intents.json', 'r') as f:
+with open('data\\intents.json', 'r') as f:
     intents = json.load(f)
 
 all_words = []
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         "tags": tags
     }
 
-    FILE = "data/data.pth"
+    FILE = "data\\data.pth"
     torch.save(data, FILE)
 
     print(f'Training complete. File Saved to {FILE}')
