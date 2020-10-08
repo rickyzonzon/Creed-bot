@@ -4,19 +4,18 @@ import random
 import json
 import torch
 from bot_trainer.model import NeuralNet
-from textblob import TextBlob
 from bot_trainer.nltk_utils import bag_of_words, tokenize
 from cores.emotion_core import Emotion
 from cores.va_core import *
 
 
-# add sentiment functionality
-
+# ChatCore class creates an instance
 class ChatCore:
+
+    bot_name = "Creed"
 
     def __init__(self):
         self.FILE = "bot_trainer\\data\\data.pth"
-        self.bot_name = "Creed"
         self.emotions = Emotion(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
         self.sentence = ""
         self.log = open("log.txt", "a", encoding="utf-8")
@@ -43,18 +42,18 @@ class ChatCore:
         self.model.load_state_dict(self.model_state)
         self.model.eval()
 
-    # Analyze sentiment of user input, -1 <= analysis <= 1
-    def update_emotion(self, analysis):
-        self.emotions
+    # Analyze sentiment of user input based on sentiment.json, update emotion accordingly
+    # not yet implemented
+    def analyze_sentiment(self, tokenized_sentence):
+        return None
 
     # Talk to Creed
     def chat(self, sentence):
 
         self.log.write(f"You: {sentence}\n")
 
-        # returns number between -1 and 1, convert to emotions
-        analysis = analyze_sentiment(sentence)
         tokenized_sentence = tokenize(sentence)
+        analysis = self.analyze_sentiment(tokenized_sentence)
 
         X = bag_of_words(tokenized_sentence, self.all_words)
         X = X.reshape(1, X.shape[0])
@@ -69,8 +68,9 @@ class ChatCore:
 
         self.log.write(f"{tag}: {prob.item()}: {analysis}\n")
 
-        response = ''
+        response = ""
 
+        # Threshold can be adjusted as needed when more data is added
         if prob.item() > 0.97:
             for intent in self.intents["intents"]:
                 if tag == intent["tag"]:
@@ -88,14 +88,14 @@ class ChatCore:
                         self.log.write(response + "\n")
                         return assistantResponse(response)
                     elif intent["tag"] == "person_info":
-                        # search memory first, use [1] if found in memory
+                        # search memory first, use [1] if found in memory (to be implemented)
                         response = response\
                                    + random.choice(intent["responses"][0])\
                                    + getPerson(self.all_words, sentence)
                         self.log.write(response + "\n")
                         return assistantResponse(response)
                     elif intent["tag"] == "general_info":
-                        # search memory first
+                        # search memory first (to be implemented)
                         response = response\
                                    + random.choice(intent["responses"])\
                                    + f'\"{sentence}\":'\
@@ -116,14 +116,7 @@ class ChatCore:
                         response = response + random.choice(intent["responses"])
                         self.log.write(response + "\n")
                         return assistantResponse(response)
-
         else:
             response = response + "I can't do that for you right now."
             self.log.write(response + "\n")
             return assistantResponse(response)
-
-
-# Sentiment analysis
-def analyze_sentiment(sentence):
-    analysis = TextBlob(sentence)
-    return analysis.sentiment.polarity
