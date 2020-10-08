@@ -37,7 +37,7 @@ class GUI(Tk.Frame):
         self.receive("hi")
         self.dummy.pack(side="top", anchor="center")
         self.user_input.bind('<Return>', self.send)
-        self.canvas.get_tk_widget().bind('<Button-1>', self.callback)
+        self.ccfzanvas.get_tk_widget().bind('<Button-1>', self.callback)
         self.communicate_frame.pack(side="right", fill="both")
         self.emotions_frame.pack(side="left", fill="both")
         self.canvas.draw()

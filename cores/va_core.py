@@ -1,9 +1,7 @@
 # Virtual assistant core
 
 import speech_recognition as sr
-import os
-from gtts import gTTS
-from playsound import playsound
+import pyttsx3
 import datetime
 import calendar
 from pygame import mixer
@@ -27,17 +25,19 @@ def record():
     except sr.UnknownValueError:
         print('Google Speech Recognition did not understand the audio, unknown error')
     except sr.RequestError as e:
-        print('Request results from Google Speech Recognition service error ' + e)
+        print('Request results from Google Speech Recognition service error ' + str(e))
 
     return data
 
 
 def assistantResponse(text):
-
-    myobj = gTTS(text=text, lang='en', slow=False)
-    myobj.save('assistant_response.mp3')
-    playsound('assistant_response.mp3')
-    os.remove('assistant_response.mp3')
+    converter = pyttsx3.init()
+    voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
+    converter.setProperty('rate', 150)
+    converter.setProperty('volume', 0.7)
+    converter.setProperty('voice', voice_id)
+    converter.say(text)
+    converter.runAndWait()
 
     return f"Creed: {text}"
 
@@ -123,3 +123,4 @@ def howTo(sentence):
     sentence = sentence.split()
     sentence = "+".join(sentence)
     webbrowser.open(f'http://youtube.com/results?search_query={sentence}')
+
