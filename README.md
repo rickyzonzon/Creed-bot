@@ -27,7 +27,7 @@ To be implemented:
     - tell you the weather
 - advanced sentiment analysis, what you say affects Creed's "emotions"
     - Creed's emotion affects his responses
-- speak to creed while interface is open
+- speak (with the mic) to creed while interface is open
 
 ### How to Use?
 1. Run creed.py.
