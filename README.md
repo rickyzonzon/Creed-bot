@@ -39,3 +39,9 @@ Note: Creed is not fully developed, so it will not always understand what you ar
 5. To close the application, press the 'Quit' button in the top left. If you close it via other methods creed.py will 
 continue running. Note: You can say goodbye to Creed and it will understand. It will stop listening to you, but the
 application won't close.
+
+#### Credits
+https://www.youtube.com/watch?v=RpWeNzfSUHw&t=897s&ab_channel=PythonEngineer
+- Used to build basic chat bot functionality
+https://www.youtube.com/watch?v=AGatX_8gaeM&t=313s
+- Used to develop virtual assistant capabilities
