@@ -9,7 +9,7 @@ from cores.chat_core import ChatCore
 from cores.va_core import record
 
 
-# display GUI
+# GUI class to create a GUI
 class GUI(Tk.Frame):
 
     def __init__(self, parent):
@@ -30,6 +30,7 @@ class GUI(Tk.Frame):
                                  interval=1, init_func=self.emotions.initialize)
         self.initialize()
 
+    # initialize the tkinter elements
     def initialize(self):
         self.emotions_frame.pack_propagate(False)
         self.communicate_frame.pack_propagate(False)
@@ -37,20 +38,23 @@ class GUI(Tk.Frame):
         self.receive("hi")
         self.dummy.pack(side="top", anchor="center")
         self.user_input.bind('<Return>', self.send)
-        self.ccfzanvas.get_tk_widget().bind('<Button-1>', self.callback)
+        self.canvas.get_tk_widget().bind('<Button-1>', self.callback)
         self.communicate_frame.pack(side="right", fill="both")
         self.emotions_frame.pack(side="left", fill="both")
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(anchor='w', padx=50)
         self.user_input.pack(side="top", anchor="s")
 
+    # close Creed
     def _quit(self):
         self.quit()
         self.destroy()
 
+    # Takes focus away from entry when clicking off of it
     def callback(self, event):
         self.canvas.get_tk_widget().focus_set()
 
+    # Send your message to receive, message shows up in textbox
     def send(self, event):
         if self.text_or_speech == 'text':
             sentence = self.user_input.get()
@@ -70,6 +74,7 @@ class GUI(Tk.Frame):
             self.messages.configure(state="disabled")
             self.messages.see("end")
 
+    # Get Creed's response to your message, response shows up in textbox
     def receive(self, sentence):
         self.messages.configure(state="normal")
         response = self.creed.chat(sentence)

@@ -30,6 +30,7 @@ def record():
     return data
 
 
+# Respond to text, vocally and textually
 def assistantResponse(text):
     converter = pyttsx3.init()
     voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
@@ -42,6 +43,7 @@ def assistantResponse(text):
     return f"Creed: {text}"
 
 
+# Creed activates after hearing/getting the wake word
 def wakeWord(text):
     WAKE_WORDS = ['hey creed', 'yo creed']
 
@@ -54,9 +56,7 @@ def wakeWord(text):
     return False
 
 
-# Shut down function
-
-
+# Provide the date
 def getDate():
     now = datetime.datetime.now()
     my_date = datetime.datetime.today()
@@ -75,6 +75,7 @@ def getDate():
     return f'{weekday} {month_names[monthNum - 1]} the {ordinalNumbers[dayNum - 1]}.'
 
 
+# Provide the time
 def getTime():
     now = datetime.datetime.now()
     meridiem = ''
@@ -93,10 +94,7 @@ def getTime():
     return f'{hour}:{minute} {meridiem}.'
 
 
-# proper punctuation
-
-
-# make functional for first names only
+# Returns info about a person given a vocabulary (list of strings) and a question (string)
 def getPerson(vocabulary, sentence):
     person = ''
 
@@ -113,12 +111,14 @@ def getPerson(vocabulary, sentence):
     return wiki
 
 
+# Opens google search for sentence
 def getInfo(sentence):
     sentence = sentence.split()
     sentence = "+".join(sentence)
     webbrowser.open(f'http://google.com/search?q={sentence}')
 
 
+# Opens youtube for sentence
 def howTo(sentence):
     sentence = sentence.split()
     sentence = "+".join(sentence)
