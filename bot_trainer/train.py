@@ -10,7 +10,7 @@ from bot_trainer.model import NeuralNet
 
 # add sentiment training
 
-with open('data\\intents.json', 'r') as f:
+with open('bot_trainer\\data\\intents.json', 'r') as f:
     intents = json.load(f)
 
 all_words = []
