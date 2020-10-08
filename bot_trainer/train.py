@@ -102,7 +102,7 @@ if __name__ == '__main__':
         "tags": tags
     }
 
-    FILE = "../cores/data.pth"
+    FILE = "data/data.pth"
     torch.save(data, FILE)
 
     print(f'Training complete. File Saved to {FILE}')

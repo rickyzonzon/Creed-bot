@@ -15,15 +15,15 @@ from cores.va_core import *
 class ChatCore:
 
     def __init__(self):
-        self.FILE = "data.pth"
+        self.FILE = "bot_trainer\\data\\data.pth"
         self.bot_name = "Creed"
         self.emotions = Emotion(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
         self.sentence = ""
-        self.log = open("../log.txt", "a", encoding="utf-8")
+        self.log = open("log.txt", "a", encoding="utf-8")
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        with open("../bot_trainer/data/intents.json", "r") as f:
+        with open("bot_trainer\\data\\intents.json", "r") as f:
             self.intents = json.load(f)
 
         self.data = torch.load(self.FILE)
