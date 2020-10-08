@@ -43,5 +43,6 @@ application won't close.
 #### Credits
 https://www.youtube.com/watch?v=RpWeNzfSUHw&t=897s&ab_channel=PythonEngineer
 - Used to build basic chat bot functionality
+
 https://www.youtube.com/watch?v=AGatX_8gaeM&t=313s
 - Used to develop virtual assistant capabilities
