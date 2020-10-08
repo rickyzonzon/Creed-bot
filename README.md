@@ -2,10 +2,10 @@
 Creed bot, named after Creed Bratton from <i>The Office</i>, is an enhanced ai chat bot with virtual assistant capabilities and simulated emotions.
 Neural net model created with Pytorch using a relu activation function and 2 hidden layers.
 
-#### Screenshots
+### Screenshots
 ![Image of Yaktocat](Screenshot_1.png)
 
-#### Features
+### Features
 Implemented:
 - Creed will only respond after the user says or types 'Hey Creed' or 'Yo Creed'
 - Creed can: 
