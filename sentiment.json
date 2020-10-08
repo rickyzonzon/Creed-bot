@@ -1,0 +1,82 @@
+{"sentiments": [
+  {
+    "tag": "joy",
+    "patterns": [
+      "love you",
+      "love your",
+      "congratulations",
+      "congrats",
+      "great job",
+      "proud of you",
+      "wonderful work",
+      "youre so smart",
+      "appreciate you",
+      "you are the best",
+      "youre great",
+      "you are awesome",
+      "youre so cool",
+      "you are amazing",
+      "youre spectacular",
+      "you are so helpful"
+    ],
+    "context-set": ""
+  },
+  {
+    "tag": "sadness",
+    "patterns": [
+      "hate you",
+      "dont like you",
+      "you are bad",
+      "youre so bad at that",
+      "youre useless",
+      "you should be ashamed of yourself",
+      "you suck at that",
+      "you are terrible",
+      "fuck you",
+      "damn you",
+      "youre a piece of shit",
+      "you are a prick",
+      "you are a dick",
+      "youre a bitch",
+      "you are the worst",
+      "you are awful",
+      "youre so mean",
+      "you are an asshole",
+      "youre a motherfucker",
+      "kill yourself",
+      "wish you would die"
+    ],
+    "context-set": ""
+  },
+  {
+    "tag": "trust",
+    "patterns": [],
+    "context-set": ""
+  },
+  {
+    "tag": "disgust",
+    "patterns": [],
+    "context-set": ""
+  },
+  {
+    "tag": "fear",
+    "patterns": [],
+    "context-set": ""
+  },
+  {
+    "tag": "anger",
+    "patterns": [],
+    "context-set": ""
+  },
+  {
+    "tag": "surprise",
+    "patterns": [],
+    "context-set": ""
+  },
+  {
+    "tag": "anticipation",
+    "patterns": [],
+    "context-set": ""
+  }
+]
+}
