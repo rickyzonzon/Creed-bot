@@ -1,5 +1,5 @@
 # Creed Bot
-Creed bot, named after Creed Bratton from <i>The Office</i>, Creed is an enhanced ai chat bot with virtual assistant capabilities and simulated emotions.
+Creed bot, named after Creed Bratton from <i>The Office</i>, is an enhanced ai chat bot with virtual assistant capabilities and simulated emotions.
 Neural net model created with Pytorch using a relu activation function and 2 hidden layers.
 
 #### Screenshots
