@@ -1,3 +1,5 @@
+# nltk utility functions for train.py
+
 import nltk
 import numpy as np
 from nltk.stem.porter import PorterStemmer

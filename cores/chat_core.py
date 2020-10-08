@@ -1,14 +1,13 @@
 # Chatbot core
 
-import io
 import random
 import json
 import torch
-from model import NeuralNet
+from bot_trainer.model import NeuralNet
 from textblob import TextBlob
-from nltk_utils import bag_of_words, tokenize
-from emotion import Emotion
-from va_core import *
+from bot_trainer.nltk_utils import bag_of_words, tokenize
+from cores.emotion_core import Emotion
+from cores.va_core import *
 
 
 # add sentiment functionality
@@ -20,11 +19,11 @@ class ChatCore:
         self.bot_name = "Creed"
         self.emotions = Emotion(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
         self.sentence = ""
-        self.log = open("log.txt", "a", encoding="utf-8")
+        self.log = open("../log.txt", "a", encoding="utf-8")
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        with open("intents.json", "r") as f:
+        with open("../bot_trainer/data/intents.json", "r") as f:
             self.intents = json.load(f)
 
         self.data = torch.load(self.FILE)

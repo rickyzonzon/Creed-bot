@@ -1,16 +1,16 @@
 # Bot trainer
 
 import json
-from nltk_utils import tokenize, stem, bag_of_words
+from bot_trainer.nltk_utils import tokenize, stem, bag_of_words
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
-from model import NeuralNet
+from bot_trainer.model import NeuralNet
 
 # add sentiment training
 
-with open('intents.json', 'r') as f:
+with open('data/intents.json', 'r') as f:
     intents = json.load(f)
 
 all_words = []
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         "tags": tags
     }
 
-    FILE = "data.pth"
+    FILE = "../cores/data.pth"
     torch.save(data, FILE)
 
     print(f'Training complete. File Saved to {FILE}')

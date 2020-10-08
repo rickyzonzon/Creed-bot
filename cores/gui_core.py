@@ -4,9 +4,9 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.backends.backend_tkagg import *
 import tkinter as Tk
 from tkinter import Frame, INSERT
-from emotion import *
-from chat_core import ChatCore
-from va_core import record
+from cores.emotion_core import *
+from cores.chat_core import ChatCore
+from cores.va_core import record
 
 
 # display GUI

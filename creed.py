@@ -1,8 +1,8 @@
 # Creed program
 
 import tkinter as Tk
-from gui import GUI
-from va_core import record, wakeWord
+from cores.gui_core import GUI
+from cores.va_core import record, wakeWord
 import warnings
 
 # Ignore any warning messages
