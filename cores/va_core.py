@@ -118,6 +118,11 @@ def getInfo(sentence):
     webbrowser.open(f'http://google.com/search?q={sentence}')
 
 
+# Provides the weather in a given city
+def getWeather(sentence):
+    pass
+
+
 # Opens youtube for sentence
 def howTo(sentence):
     sentence = sentence.split()

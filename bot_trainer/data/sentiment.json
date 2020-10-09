@@ -50,32 +50,122 @@
   },
   {
     "tag": "trust",
-    "patterns": [],
+    "patterns": [
+      "honestly i thought",
+      "in my opinion",
+      "frankly I believe",
+      "to be honest i think",
+      "and thats everything i know",
+      "this is my side of it",
+      "i genuinely feel",
+      "sometimes i find that",
+      "i truly believe",
+      "youre looking",
+      "sorry about that",
+      "that was my fault"
+    ],
     "context-set": ""
   },
   {
     "tag": "disgust",
-    "patterns": [],
+    "patterns": [
+      "poopy",
+      "poop",
+      "poo",
+      "toilet",
+      "diarrhea",
+      "puke",
+      "throw up",
+      "throw-up",
+      "vomit",
+      "yack",
+      "rats",
+      "lizards",
+      "bugs",
+      "insects",
+      "spiders",
+      "snot",
+      "booger"
+    ],
     "context-set": ""
   },
   {
     "tag": "fear",
-    "patterns": [],
+    "patterns": [
+      "snakes",
+      "your death",
+      "you will die",
+      "kill you",
+      "you will be dead",
+      "boo",
+      "shoot you",
+      "you will be shot",
+      "stab you",
+      "you will be stabbed",
+      "zombies",
+      "ghosts",
+      "ghouls",
+      "mummies",
+      "vampires",
+      "you will get sick",
+      "virus"
+    ],
     "context-set": ""
   },
   {
     "tag": "anger",
-    "patterns": [],
+    "patterns": [
+      "told you",
+      "already knew that",
+      "you wouldnt get it",
+      "you wouldnt understand",
+      "just relax",
+      "no offense",
+      "periodt",
+      "that wasn't helpful",
+      "youre useless",
+      "you are useless",
+      "why would you do that",
+      "no thats not what i wanted",
+      "thats not right",
+      "you did it wrong",
+      "that was wrong",
+      "actually",
+      "you suck"
+    ],
     "context-set": ""
   },
   {
     "tag": "surprise",
-    "patterns": [],
+    "patterns": [
+      "surprise",
+      "boo",
+      "this has changed",
+      "this is different now",
+      "a change has been made",
+      "this is new",
+      "that is new",
+      "thats new",
+      "there was a change",
+      "thats different",
+      "oh no something happened",
+      "oh my god",
+      "oh my goodness"
+    ],
     "context-set": ""
   },
   {
     "tag": "anticipation",
-    "patterns": [],
+    "patterns": [
+      "wait for it",
+      "something is happening later",
+      "dont get too when you hear this",
+      "dont be too when i say this",
+      "hold on a while",
+      "this will happen",
+      "that is going to happen eventually",
+      "eventually this will happen"
+    ],
     "context-set": ""
   }
 ]
