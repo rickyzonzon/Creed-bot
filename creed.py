@@ -4,11 +4,33 @@ import tkinter as Tk
 from cores.gui_core import GUI
 from cores.va_core import record, wakeWord
 import warnings
+import os, time
 
 # Ignore any warning messages
-warnings.filterwarnings('ignore')
+warnings.filterwarnings("ignore")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
+    while True:
+        train_creed = input("Would you like to retrain creed (y/n)? Note: Retraining Creed may take several minutes.\n")
+
+        if train_creed.lower() == "y":
+            print("Creed's speech and emotion will now both be retrained.\n")
+            time.sleep(2)
+            print("Training speech...")
+            os.system("python bot_trainer\\train_speech.py")
+            print("Training emotion...")
+            os.system("python bot_trainer\\train_emotion.py")
+            print("Training complete.\n")
+            print("Proceeding to Creed...")
+            time.sleep(2)
+            break
+        elif train_creed.lower() == "n":
+            print("Proceeding to Creed...")
+            time.sleep(2)
+            break
+        else:
+            print("Type 'y' or 'n' please.")
 
     while True:
         text_or_speech = input("Would you like to use speech or text to communicate ('speech' or 'text')?\n")
@@ -24,7 +46,7 @@ if __name__ == '__main__':
             break
 
     while True:
-        if text_or_speech.lower() == 'speech':
+        if text_or_speech.lower() == "speech":
             sentence = record()
             print(f"You: {sentence}")
             if wakeWord(sentence):

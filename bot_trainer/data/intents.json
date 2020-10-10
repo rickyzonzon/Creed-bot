@@ -311,6 +311,18 @@
     "context-set": ""
   },
   {
+    "tag": "neutral",
+    "patterns": [
+      "ok",
+      "okay",
+      "okie"
+    ],
+    "responses": [
+
+    ],
+    "context-set": ""
+  },
+  {
     "tag": "mean_things",
     "patterns": [
       "hate you",

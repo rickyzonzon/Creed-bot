@@ -97,6 +97,7 @@ def getTime():
 # Returns info about a person given a vocabulary (list of strings) and a question (string)
 def getPerson(vocabulary, sentence):
     person = ''
+    found = True
 
     for word in sentence.split():
         if word not in vocabulary:
@@ -106,9 +107,13 @@ def getPerson(vocabulary, sentence):
     try:
         wiki = wikipedia.summary(person, sentences=2)
     except wikipedia.exceptions.PageError:
-        wiki = wikipedia.summary(person, sentences=2, auto_suggest=False)
+        try:
+            wiki = wikipedia.summary(person, sentences=2, auto_suggest=False)
+        except wikipedia.exceptions.PageError:
+            found = False
+            return [found, f"Unfortunately, I can't find any information on {person}."]
 
-    return wiki
+    return [found, wiki]
 
 
 # Opens google search for sentence

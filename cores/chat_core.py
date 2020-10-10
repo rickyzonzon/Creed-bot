@@ -15,10 +15,10 @@ class ChatCore:
     bot_name = "Creed"
 
     def __init__(self):
-        self.FILE = "bot_trainer\\data\\data.pth"
+        self.FILE = "bot_trainer\\data\\speech_data.pth"
         self.emotions = Emotion(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
         self.sentence = ""
-        self.log = open("log.txt", "a", encoding="utf-8")
+        self.log = open("log.txt", "a")
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -45,7 +45,7 @@ class ChatCore:
     # Analyze sentiment of user input based on sentiment.json, update emotion accordingly
     # not yet implemented
     def analyze_sentiment(self, tokenized_sentence):
-        return None
+        pass
 
     # Talk to Creed
     def chat(self, sentence):
@@ -89,22 +89,28 @@ class ChatCore:
                         return assistantResponse(response)
                     elif intent["tag"] == "person_info":
                         # search memory first, use [1] if found in memory (to be implemented)
-                        response = response\
-                                   + random.choice(intent["responses"][0])\
-                                   + getPerson(self.all_words, sentence)
-                        self.log.write(response + "\n")
+                        if getPerson(self.all_words, sentence)[0]:
+                            response = response\
+                                       + random.choice(intent["responses"][0])\
+                                       + getPerson(self.all_words, sentence)[1]
+                            self.log.write(response + "\n")
+                        else:
+                            response = response \
+                                       + getPerson(self.all_words, sentence)[1]
+                            self.log.write(response + "\n")
                         return assistantResponse(response)
                     elif intent["tag"] == "general_info":
                         # search memory first (to be implemented)
+                        getInfo(sentence)
                         response = response\
                                    + random.choice(intent["responses"])\
-                                   + f'\"{sentence}\":'\
-                                   + getInfo(sentence)
+                                   + f'\"{sentence}\":'
                         self.log.write(response + "\n")
                         return assistantResponse(response)
                     elif intent["tag"] == "how_to":
                         howTo(sentence)
                         response = response + random.choice(intent["responses"])
+                        self.log.write(response + "\n")
                         return assistantResponse(response)
                     elif intent["tag"] == "status":
                         response = response \
@@ -120,3 +126,6 @@ class ChatCore:
             response = response + "I can't do that for you right now."
             self.log.write(response + "\n")
             return assistantResponse(response)
+
+creed = ChatCore()
+creed.chat("ok")

@@ -1,4 +1,4 @@
-# nltk utility functions for train.py
+# nltk utility functions for train_speech.py
 
 import nltk
 import numpy as np
