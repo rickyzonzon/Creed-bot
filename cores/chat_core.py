@@ -74,8 +74,8 @@ class ChatCore:
         count = 0
         analysis = []
         while count < len(probs[0]):
-            self.emotions.change(self.emotion_tags[count], probs[0][count].item())
-            analysis.append([self.emotion_tags[count], probs[0][count].item()])
+            self.emotions.change(self.emotion_tags[count], 0.5 * probs[0][count].item())
+            analysis.append([self.emotion_tags[count], 0.5 * probs[0][count].item()])
             count += 1
 
         return analysis
@@ -104,14 +104,13 @@ class ChatCore:
         response = ""
 
         # Threshold can be adjusted as needed when more data is added
-        if prob.item() > 0.97:
+        if prob.item() > 0.99:
             for intent in self.intents["intents"]:
                 if tag == intent["tag"]:
 
                     if intent["tag"] == "goodbye":
                         response = response + random.choice(intent["responses"])
                         self.log.write(response + "\n")
-                        self.log.close()
                         return assistantResponse(response)
 
                     elif intent["tag"] == "date":
@@ -126,14 +125,14 @@ class ChatCore:
 
                     elif intent["tag"] == "person_info":
                         # search memory first, use [1] if found in memory (to be implemented)
-                        if getPerson(self.all_words, sentence)[0]:
+                        if getPerson(self.speech_all_words, sentence)[0]:
                             response = response\
                                        + random.choice(intent["responses"][0])\
-                                       + getPerson(self.all_words, sentence)[1]
+                                       + getPerson(self.speech_all_words, sentence)[1]
                             self.log.write(response + "\n")
                         else:
                             response = response \
-                                       + getPerson(self.all_words, sentence)[1]
+                                       + getPerson(self.speech_all_words, sentence)[1]
                             self.log.write(response + "\n")
                         return assistantResponse(response)
 
@@ -155,7 +154,7 @@ class ChatCore:
                     elif intent["tag"] == "status":
                         response = response \
                                    + f'{random.choice(intent["responses"])} ' \
-                                   + random.choice(self.emotions.status())
+                                   + self.emotions.status()
                         self.log.write(response + "\n")
                         return assistantResponse(response)
 

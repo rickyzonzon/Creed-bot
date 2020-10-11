@@ -45,42 +45,42 @@ class Emotion:
         while True:
 
             if self.emotions["joy"] >= 0.25:
-                self.change("joy", -0.005 * self.emotions["joy"])
+                self.change("joy", -0.001 * self.emotions["joy"])
             else:
                 self.emotions["joy"] = 0.25
 
             if self.emotions["sadness"] >= 0.25:
-                self.change("sadness", -0.005 * self.emotions["sadness"])
+                self.change("sadness", -0.001 * self.emotions["sadness"])
             else:
                 self.emotions["sadness"] = 0.25
 
             if self.emotions["trust"] >= 0.25:
-                self.change("trust", -0.005 * self.emotions["trust"])
+                self.change("trust", -0.001 * self.emotions["trust"])
             else:
                 self.emotions["trust"] = 0.25
 
             if self.emotions["disgust"] >= 0.25:
-                self.change("disgust", -0.005 * self.emotions["disgust"])
+                self.change("disgust", -0.001 * self.emotions["disgust"])
             else:
                 self.emotions["disgust"] = 0.25
 
             if self.emotions["fear"] >= 0.25:
-                self.change("fear", -0.005 * self.emotions["fear"])
+                self.change("fear", -0.001 * self.emotions["fear"])
             else:
                 self.emotions["fear"] = 0.25
 
             if self.emotions["anger"] >= 0.25:
-                self.change("anger", -0.005 * self.emotions["anger"])
+                self.change("anger", -0.001 * self.emotions["anger"])
             else:
                 self.emotions["anger"] = 0.25
 
             if self.emotions["surprise"] >= 0.25:
-                self.change("surprise", -0.005 * self.emotions["surprise"])
+                self.change("surprise", -0.001 * self.emotions["surprise"])
             else:
                 self.emotions["surprise"] = 0.25
 
             if self.emotions["anticipation"] >= 0.25:
-                self.change("anticipation", -0.005 * self.emotions["anticipation"])
+                self.change("anticipation", -0.001 * self.emotions["anticipation"])
             else:
                 self.emotions["anticipation"] = 0.25
 
@@ -93,28 +93,98 @@ class Emotion:
     # any emotes above a certain level, add to strongest
     # output list of words describing the feeling
     def status(self):
-        maxnum = max(self.emotions.items(), key=operator.itemgetter(1))[1]
-        strongest = [s for s in self.emotions if maxnum == self.emotions[s]]
+        strongest = []
+        for emotion in self.emotions:
+            if self.emotions[emotion] > 1:
+                strongest.append(emotion)
 
-        if len(strongest) == 1:
-            if strongest == 'joy':
-                return ["happy", "cheerful", "joyful", "delighted"]
-            elif strongest == 'sadness':
-                return ["unhappy", "sad", "depressed", "gloomy", "down"]
-            elif strongest == 'trust':
-                return ["trusting", "unsuspecting", "wide-eyed"]
-            elif strongest == 'disgust':
-                return ["disgusted", "revolted", "sickened", "yucky"]
-            elif strongest == 'fear':
-                return ["scared", "afraid", "frightened", "nervous", "worried"]
-            elif strongest == 'anger':
-                return ["angry", "mad", "upset", "annoyed", "irritated"]
-            elif strongest == 'surprise':
-                return ["surprised", "astonished", "startled", "shocked"]
-            elif strongest == 'anticipation':
-                return ["expecting", "hopeful", "anticipative"]
+        if len(strongest) == 0:
+            return "neutral"
+        elif len(strongest) > 4:
+            return "overwhelmed"
         else:
-            return ["not implemented"]
+            feels = []
+            if "joy" in strongest:
+                if "trust" in strongest:
+                    feels.append("flirty")
+                elif "fear" in strongest:
+                    feels.append("guilty")
+                elif "surprise" in strongest:
+                    feels.append("delighted")
+                else:
+                    feels.append("happy")
+
+            if "sadness" in strongest:
+                if "disgust" in strongest:
+                    feels.append("remorseful")
+                elif "anger" in strongest:
+                    feels.append("envious")
+                elif "anticipation" in strongest:
+                    feels.append("pessimistic")
+                else:
+                    feels.append("sad")
+
+            if "trust" in strongest:
+                if "fear" in strongest:
+                    feels.append("accommodating")
+                elif "surprise" in strongest:
+                    feels.append("curious")
+                elif "sadness" in strongest:
+                    feels.append("sentimental")
+                else:
+                    feels.append("trusting")
+
+            if "disgust" in strongest:
+                if "anger" in strongest:
+                    feels.append("contempt")
+                elif "anticipation" in strongest:
+                    feels.append("cynical")
+                elif "joy" in strongest:
+                    feels.append("unpleasant")
+                else:
+                    feels.append("disgusted")
+
+            if "fear" in strongest:
+                if "surprise" in strongest:
+                    feels.append("astonished")
+                elif "sadness" in strongest:
+                    feels.append("desperate")
+                elif "disgust" in strongest:
+                    feels.append("ashamed")
+                else:
+                    feels.append("scared")
+
+            if "anger" in strongest:
+                if "anticipation" in strongest:
+                    feels.append("aggressive")
+                elif "joy" in strongest:
+                    feels.append("proud")
+                elif "trust" in strongest:
+                    feels.append("dominant")
+                else:
+                    feels.append("angry")
+
+            if "surprise" in strongest:
+                if "sadness" in strongest:
+                    feels.append("dissatisfied")
+                elif "disgust" in strongest:
+                    feels.append("mind-boggled")
+                elif "anger" in strongest:
+                    feels.append("outraged")
+                else:
+                    feels.append("surprised")
+
+            if "anticipation" in strongest:
+                if "joy" in strongest:
+                    feels.append("optimistic")
+                elif "trust" in strongest:
+                    feels.append("hopeful")
+                elif "fear" in strongest:
+                    feels.append("anxious")
+                else:
+                    feels.append("eager")
+
+            return " and ".join(feels)
 
     def initialize(self):
         self.ax.set_varlabels(self.spoke_labels)

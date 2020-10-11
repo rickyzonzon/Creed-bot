@@ -62,3 +62,4 @@ if __name__ == "__main__":
     gui.text_or_speech = text_or_speech
     gui.pack()
     root.mainloop()
+    gui.creed.log.close()

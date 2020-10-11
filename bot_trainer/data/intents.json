@@ -81,7 +81,7 @@
     "tag": "name",
     "patterns": [
       "what is your name",
-      "what should I call you",
+      "what should i call you",
       "whats your name",
       "who are you",
       "what are you"
@@ -264,6 +264,8 @@
     "patterns": [
       "how are you",
       "hows it going",
+      "how are you feeling",
+      "how are you doing",
       "are you ok",
       "what are you feeling",
       "whats your status",
@@ -298,7 +300,8 @@
       "youre so cool",
       "you are amazing",
       "youre spectacular",
-      "you are so helpful"
+      "you are so helpful",
+      "love you"
     ],
     "responses": [
       "Thanks man!",
@@ -318,7 +321,7 @@
       "okie"
     ],
     "responses": [
-
+      "placeholder"
     ],
     "context-set": ""
   },

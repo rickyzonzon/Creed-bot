@@ -1,0 +1,62 @@
+You: hi
+greeting: 1.0: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+What's the problem?
+You: how are you feeling
+status: 1.0: [['anger', 3.742947001228458e-07], ['anticipation', 5.859113823735776e-31], ['disgust', 3.1067369894242354e-37], ['fear', 0.49999934434890747], ['joy', 3.3392661109119636e-29], ['sadness', 2.7231217814005504e-07], ['surprise', 4.663323949216647e-09], ['trust', 3.0744187312326656e-24]]
+I am scared
+You: how old are you
+age: 1.0: [['anger', 5.2384468318678046e-08], ['anticipation', 2.6766245368400627e-15], ['disgust', 6.36142885330343e-14], ['fear', 2.2828272605579514e-08], ['joy', 0.4999999403953552], ['sadness', 1.3761900952147244e-08], ['surprise', 4.375842680152799e-23], ['trust', 2.5030693819002045e-41]]
+I'm 33 dude.
+You: hi
+greeting: 1.0: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+Hey dude.
+You: what the hell
+name: 0.9981421232223511: [['anger', 1.6999683438712054e-08], ['anticipation', 5.354697241166662e-10], ['disgust', 0.49999916553497314], ['fear', 4.0428597195136424e-19], ['joy', 8.249025427176093e-07], ['sadness', 4.1918953117697777e-13], ['surprise', 6.305843089461677e-45], ['trust', 3.9496788320689645e-40]]
+Who's asking?
+You: eat my stinky shit
+mean_things: 0.5066149234771729: [['anger', 0.4999985694885254], ['anticipation', 0.0], ['disgust', 0.0], ['fear', 1.1580319199424041e-27], ['joy', 0.0], ['sadness', 1.434294745195075e-06], ['surprise', 0.0], ['trust', 2.5644441768218454e-22]]
+I can't do that for you right now.
+You: there is puke on my bathroom floor
+general_info: 0.9998860359191895: [['anger', 1.7276898891494723e-36], ['anticipation', 0.49999547004699707], ['disgust', 4.5026886255072895e-06], ['fear', 1.4725758025625633e-23], ['joy', 2.1106886599960524e-37], ['sadness', 0.0], ['surprise', 0.0], ['trust', 1.317220556465328e-43]]
+I don't know, but here's what Google says about "there is puke on my bathroom floor":
+You: youre so broken
+appreciation/compliments: 0.9886350631713867: [['anger', 0.1823197603225708], ['anticipation', 1.8453881185705495e-19], ['disgust', 7.615273971313397e-13], ['fear', 2.5307308332278566e-12], ['joy', 0.0026025772094726562], ['sadness', 0.31507769227027893], ['surprise', 5.527801587234206e-24], ['trust', 4.21755995876753e-37]]
+Thanks.
+You: what time is it
+time: 0.9999998807907104: [['anger', 4.865206941794227e-24], ['anticipation', 0.3816765248775482], ['disgust', 0.11832349002361298], ['fear', 1.5333380046353082e-15], ['joy', 1.7590453983999488e-17], ['sadness', 4.5965579678814534e-33], ['surprise', 2.9195030556328607e-38], ['trust', 2.6433467166776145e-35]]
+The time is 0:53 a.m.
+You: what day is it
+date: 1.0: [['anger', 4.865206941794227e-24], ['anticipation', 0.3816765248775482], ['disgust', 0.11832349002361298], ['fear', 1.5333380046353082e-15], ['joy', 1.7590453983999488e-17], ['sadness', 4.5965579678814534e-33], ['surprise', 2.9195030556328607e-38], ['trust', 2.6433467166776145e-35]]
+Today is Sunday October the 11th.
+You: how do i eat a banana
+how_to: 0.9999960660934448: [['anger', 0.4996125102043152], ['anticipation', 0.0], ['disgust', 0.0], ['fear', 1.0268957349225411e-15], ['joy', 0.0], ['sadness', 0.0003874783287756145], ['surprise', 7.405161734724496e-42], ['trust', 4.027980808245345e-17]]
+Here are some Youtube videos that I think might help.
+You: ok
+neutral: 0.9999998807907104: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+You: yes
+affirmative: 1.0: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+What are you referring to?
+You: no
+refutation: 1.0: [['anger', 0.34982362389564514], ['anticipation', 2.3525839398163624e-40], ['disgust', 3.863449931066737e-41], ['fear', 1.712780579258416e-14], ['joy', 0.0], ['sadness', 0.15017636120319366], ['surprise', 5.35605190570259e-16], ['trust', 4.2685116552476643e-10]]
+I don't know what you're talking about.
+You: who are you
+name: 0.9999998807907104: [['anger', 0.10002607107162476], ['anticipation', 2.5334922961611772e-12], ['disgust', 1.8104155327658411e-12], ['fear', 0.005820583086460829], ['joy', 5.247526302376571e-10], ['sadness', 0.38533633947372437], ['surprise', 0.008817043155431747], ['trust', 5.305801575872238e-09]]
+Who's asking?
+You: hows it going
+status: 1.0: [['anger', 2.2501797517296418e-13], ['anticipation', 0.495183527469635], ['disgust', 0.0030738404020667076], ['fear', 0.000436396716395393], ['joy', 0.0013062289217486978], ['sadness', 4.4280673910219305e-19], ['surprise', 7.096178551392981e-24], ['trust', 2.1472342548963385e-36]]
+I am feeling neutral
+You: great job creed
+appreciation/compliments: 1.0: [['anger', 1.157934251955206e-11], ['anticipation', 7.89498962230991e-17], ['disgust', 9.868939687137463e-16], ['fear', 2.2746195205147757e-10], ['joy', 0.5], ['sadness', 1.2917923295722306e-13], ['surprise', 7.057504100875074e-32], ['trust', 0.0]]
+Thank you!
+You: im really proud of you
+appreciation/compliments: 1.0: [['anger', 0.37812182307243347], ['anticipation', 5.9741552234381636e-18], ['disgust', 4.410681708907291e-18], ['fear', 0.019277362152934074], ['joy', 9.01033761491199e-12], ['sadness', 0.10260078310966492], ['surprise', 9.812715757681091e-15], ['trust', 1.0868387154567287e-24]]
+You're too kind.
+You: she told me i wasnt good enough
+general_info: 0.9999994039535522: [['anger', 1.8337456509173343e-15], ['anticipation', 7.81621134263346e-25], ['disgust', 4.4647541086008375e-40], ['fear', 0.4998535215854645], ['joy', 0.0], ['sadness', 1.075512123162752e-19], ['surprise', 1.0294459684700996e-07], ['trust', 0.00014635197294410318]]
+Here's what google says for "she told me i wasnt good enough":
+You: bye
+goodbye: 1.0: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+Creed out!
+You: yay
+name: 0.9650939106941223: [['anger', 0.007355439476668835], ['anticipation', 0.0018787502776831388], ['disgust', 0.0005624228506349027], ['fear', 0.4872942566871643], ['joy', 7.213976641651243e-05], ['sadness', 0.0011643728939816356], ['surprise', 0.0016688689356669784], ['trust', 3.7749434795841807e-06]]
+I can't do that for you right now.
