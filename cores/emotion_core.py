@@ -27,7 +27,7 @@ class Emotion:
         self.theta = radar_factory(8, frame='polygon')
         self.fig, self.ax = plt.subplots(subplot_kw=dict(projection='radar'))
         self.spoke_labels = ['Joy', 'Anticipation', 'Anger', 'Disgust',
-                        'Sadness', 'Surprise', 'Fear', 'Trust']
+                             'Sadness', 'Surprise', 'Fear', 'Trust']
         self.data = [[[0, 0, 0, 0, 0, 0, 0, 0]]]
         for d, in self.data:
             lines = self.ax.plot(self.theta, d, color='b')
@@ -35,97 +35,61 @@ class Emotion:
 
         self.ani = None
 
-    def change_joy(self, num):
-        if self.emotions["joy"] < 2:
-            self.emotions["joy"] += num
-        elif self.emotions["joy"] >= 2 and num < 0:
-            self.emotions["joy"] += num
-
-    def change_sadness(self, num):
-        if self.emotions["sadness"] < 2:
-            self.emotions["sadness"] += num
-        elif self.emotions["sadness"] >= 2 and num < 0:
-            self.emotions["sadness"] += num
-
-    def change_trust(self, num):
-        if self.emotions["trust"] < 2:
-            self.emotions["trust"] += num
-        elif self.emotions["trust"] >= 2 and num < 0:
-            self.emotions["trust"] += num
-
-    def change_disgust(self, num):
-        if self.emotions["disgust"] < 2:
-            self.emotions["disgust"] += num
-        elif self.emotions["disgust"] >= 2 and num < 0:
-            self.emotions["disgust"] += num
-
-    def change_fear(self, num):
-        if self.emotions["fear"] < 2:
-            self.emotions["fear"] += num
-        elif self.emotions["fear"] >= 2 and num < 0:
-            self.emotions["fear"] += num
-
-    def change_anger(self, num):
-        if self.emotions["anger"] < 2:
-            self.emotions["anger"] += num
-        elif self.emotions["anger"] >= 2 and num < 0:
-            self.emotions["anger"] += num
-
-    def change_surprise(self, num):
-        if self.emotions["surprise"] < 2:
-            self.emotions["surprise"] += num
-        elif self.emotions["surprise"] >= 2 and num < 0:
-            self.emotions["surprise"] += num
-
-    def change_anticipation(self, num):
-        if self.emotions["anticipation"] < 2:
-            self.emotions["anticipation"] += num
-        elif self.emotions["anticipation"] >= 2 and num < 0:
-            self.emotions["anticipation"] += num
+    def change(self, emotion, num):
+        if self.emotions[emotion] < 2:
+            self.emotions[emotion] += num
+        elif self.emotions[emotion] >= 2 and num < 0:
+            self.emotions[emotion] += num
 
     def generator(self):
         while True:
 
             if self.emotions["joy"] >= 0.25:
-                self.change_joy(-0.005 * self.emotions["joy"])
+                self.change("joy", -0.005 * self.emotions["joy"])
             else:
                 self.emotions["joy"] = 0.25
+
             if self.emotions["sadness"] >= 0.25:
-                self.change_sadness(-0.005 * self.emotions["sadness"])
+                self.change("sadness", -0.005 * self.emotions["sadness"])
             else:
                 self.emotions["sadness"] = 0.25
+
             if self.emotions["trust"] >= 0.25:
-                self.change_trust(-0.005 * self.emotions["trust"])
+                self.change("trust", -0.005 * self.emotions["trust"])
             else:
                 self.emotions["trust"] = 0.25
+
             if self.emotions["disgust"] >= 0.25:
-                self.change_disgust(-0.005 * self.emotions["disgust"])
+                self.change("disgust", -0.005 * self.emotions["disgust"])
             else:
                 self.emotions["disgust"] = 0.25
+
             if self.emotions["fear"] >= 0.25:
-                self.change_fear(-0.005 * self.emotions["fear"])
+                self.change("fear", -0.005 * self.emotions["fear"])
             else:
                 self.emotions["fear"] = 0.25
+
             if self.emotions["anger"] >= 0.25:
-                self.change_anger(-0.005 * self.emotions["anger"])
+                self.change("anger", -0.005 * self.emotions["anger"])
             else:
                 self.emotions["anger"] = 0.25
+
             if self.emotions["surprise"] >= 0.25:
-                self.change_surprise(-0.005 * self.emotions["surprise"])
+                self.change("surprise", -0.005 * self.emotions["surprise"])
             else:
                 self.emotions["surprise"] = 0.25
+
             if self.emotions["anticipation"] >= 0.25:
-                self.change_anticipation(-0.005 * self.emotions["anticipation"])
+                self.change("anticipation", -0.005 * self.emotions["anticipation"])
             else:
                 self.emotions["anticipation"] = 0.25
 
             self.feelings = [self.emotions["joy"], self.emotions["anticipation"], self.emotions["anger"],
-                        self.emotions["disgust"], self.emotions["sadness"], self.emotions["surprise"],
-                        self.emotions["fear"], self.emotions["trust"]]
+                             self.emotions["disgust"], self.emotions["sadness"], self.emotions["surprise"],
+                             self.emotions["fear"], self.emotions["trust"]]
 
             yield self.feelings
 
-    # if larger than a certain level, add exclamation instead of period
     # any emotes above a certain level, add to strongest
     # output list of words describing the feeling
     def status(self):
@@ -166,11 +130,10 @@ class Emotion:
             lines = self.ax.set_radar_data(self.theta, d, color='b')
             filling = self.ax.set_fill_data(self.theta, d, facecolor='b', alpha=0.45)
 
-    
-def radar_factory(num_vars, frame='circle'):
 
+def radar_factory(num_vars, frame='circle'):
     # calculate evenly-spaced axis angles
-    theta = np.linspace(0, 2*np.pi, num_vars, endpoint=False)
+    theta = np.linspace(0, 2 * np.pi, num_vars, endpoint=False)
 
     class RadarAxes(PolarAxes):
 
@@ -192,7 +155,7 @@ def radar_factory(num_vars, frame='circle'):
             self.lines = super().plot(*args, **kwargs)
             for line in self.lines:
                 self._close_line(line)
-                
+
         def set_radar_data(self, data, *args, **kwargs):
             new_lines = super().plot(data, *args, **kwargs)
             self.lines = new_lines

@@ -15,7 +15,8 @@ class ChatCore:
     bot_name = "Creed"
 
     def __init__(self):
-        self.FILE = "bot_trainer\\data\\speech_data.pth"
+        self.SPEECH_FILE = "bot_trainer\\data\\speech_data.pth"
+        self.EMOTION_FILE = "bot_trainer\\data\\emotion_data.pth"
         self.emotions = Emotion(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
         self.sentence = ""
         self.log = open("log.txt", "a")
@@ -24,28 +25,60 @@ class ChatCore:
 
         with open("bot_trainer\\data\\intents.json", "r") as f:
             self.intents = json.load(f)
+        
+        with open("bot_trainer\\data\\sentiments.json", "r") as f:
+            self.sentiments = json.load(f)
 
-        self.data = torch.load(self.FILE)
-        self.input_size = self.data["input_size"]
-        self.hidden_size = self.data["hidden_size"]
-        self.output_size = self.data["output_size"]
-        self.all_words = self.data["all_words"]
-        self.tags = self.data["tags"]
-        self.model_state = self.data["model_state"]
-        self.model = NeuralNet(self.input_size, self.hidden_size, self.output_size).to(self.device)
+        self.speech_data = torch.load(self.SPEECH_FILE)
+        self.speech_input_size = self.speech_data["input_size"]
+        self.speech_hidden_size = self.speech_data["hidden_size"]
+        self.speech_output_size = self.speech_data["output_size"]
+        self.speech_all_words = self.speech_data["all_words"]
+        self.speech_tags = self.speech_data["tags"]
+        self.speech_model_state = self.speech_data["model_state"]
+        self.speech_model = NeuralNet(self.speech_input_size,
+                                      self.speech_hidden_size,
+                                      self.speech_output_size).to(self.device)
+
+        self.emotion_data = torch.load(self.EMOTION_FILE)
+        self.emotion_input_size = self.emotion_data["input_size"]
+        self.emotion_hidden_size = self.emotion_data["hidden_size"]
+        self.emotion_output_size = self.emotion_data["output_size"]
+        self.emotion_all_words = self.emotion_data["all_words"]
+        self.emotion_tags = self.emotion_data["tags"]
+        self.emotion_model_state = self.emotion_data["model_state"]
+        self.emotion_model = NeuralNet(self.emotion_input_size,
+                                       self.emotion_hidden_size,
+                                       self.emotion_output_size).to(self.device)
 
         self.initialize()
 
     # Establish the neural network
     def initialize(self):
         self.log.truncate(0)
-        self.model.load_state_dict(self.model_state)
-        self.model.eval()
+        self.speech_model.load_state_dict(self.speech_model_state)
+        self.emotion_model.load_state_dict(self.emotion_model_state)
+        self.speech_model.eval()
+        self.emotion_model.eval()
 
-    # Analyze sentiment of user input based on sentiment.json, update emotion accordingly
+    # Analyze sentiment of user input based on sentiments.json, update emotion accordingly
     # not yet implemented
     def analyze_sentiment(self, tokenized_sentence):
-        pass
+        X = bag_of_words(tokenized_sentence, self.emotion_all_words)
+        X = X.reshape(1, X.shape[0])
+        X = torch.from_numpy(X).to(self.device)
+
+        output = self.emotion_model(X)
+        probs = torch.softmax(output, dim=1)
+
+        count = 0
+        analysis = []
+        while count < len(probs[0]):
+            self.emotions.change(self.emotion_tags[count], probs[0][count].item())
+            analysis.append([self.emotion_tags[count], probs[0][count].item()])
+            count += 1
+
+        return analysis
 
     # Talk to Creed
     def chat(self, sentence):
@@ -55,13 +88,13 @@ class ChatCore:
         tokenized_sentence = tokenize(sentence)
         analysis = self.analyze_sentiment(tokenized_sentence)
 
-        X = bag_of_words(tokenized_sentence, self.all_words)
+        X = bag_of_words(tokenized_sentence, self.speech_all_words)
         X = X.reshape(1, X.shape[0])
         X = torch.from_numpy(X).to(self.device)
 
-        output = self.model(X)
+        output = self.speech_model(X)
         _, predicted = torch.max(output, dim=1)
-        tag = self.tags[predicted.item()]
+        tag = self.speech_tags[predicted.item()]
 
         probs = torch.softmax(output, dim=1)
         prob = probs[0][predicted.item()]
@@ -74,19 +107,23 @@ class ChatCore:
         if prob.item() > 0.97:
             for intent in self.intents["intents"]:
                 if tag == intent["tag"]:
+
                     if intent["tag"] == "goodbye":
                         response = response + random.choice(intent["responses"])
                         self.log.write(response + "\n")
                         self.log.close()
                         return assistantResponse(response)
+
                     elif intent["tag"] == "date":
                         response = response + random.choice(intent["responses"]) + getDate()
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     elif intent["tag"] == "time":
                         response = response + random.choice(intent["responses"]) + getTime()
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     elif intent["tag"] == "person_info":
                         # search memory first, use [1] if found in memory (to be implemented)
                         if getPerson(self.all_words, sentence)[0]:
@@ -99,6 +136,7 @@ class ChatCore:
                                        + getPerson(self.all_words, sentence)[1]
                             self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     elif intent["tag"] == "general_info":
                         # search memory first (to be implemented)
                         getInfo(sentence)
@@ -107,25 +145,26 @@ class ChatCore:
                                    + f'\"{sentence}\":'
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     elif intent["tag"] == "how_to":
                         howTo(sentence)
                         response = response + random.choice(intent["responses"])
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     elif intent["tag"] == "status":
                         response = response \
                                    + f'{random.choice(intent["responses"])} ' \
                                    + random.choice(self.emotions.status())
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
                     else:
                         response = response + random.choice(intent["responses"])
                         self.log.write(response + "\n")
                         return assistantResponse(response)
+
         else:
             response = response + "I can't do that for you right now."
             self.log.write(response + "\n")
             return assistantResponse(response)
-
-creed = ChatCore()
-creed.chat("ok")

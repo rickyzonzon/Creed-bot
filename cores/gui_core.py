@@ -4,7 +4,6 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.backends.backend_tkagg import *
 import tkinter as Tk
 from tkinter import Frame, INSERT
-from cores.emotion_core import *
 from cores.chat_core import ChatCore
 from cores.va_core import record
 
@@ -15,8 +14,8 @@ class GUI(Tk.Frame):
     def __init__(self, parent):
         Tk.Frame.__init__(self, parent)
         self.parent = parent
-        self.emotions = Emotion(0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25)
         self.creed = ChatCore()
+        self.emotions = self.creed.emotions
         self.text_or_speech = 'text'
         self.user = Tk.StringVar()
         self.communicate_frame = Frame(master=self, width=300, height=450)
